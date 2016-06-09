@@ -1,0 +1,48 @@
+<h2>{{appSettings.title}}</h2> Filter:
+<input type="text" ng-model="customerFilter" name="name" value="">
+
+<!-- Table Layout -->
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Panel heading</div>
+    <!-- Sort Buttons -->
+    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default" ng-click="doSort('name')">Name</button>
+        </div>
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default" ng-click="doSort('city')">City</button>
+        </div>
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default" ng-click="doSort('orderTotal')">Order Total</button>
+        </div>
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default" ng-click="doSort('joined')">Joined</button>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <table class="table">
+
+        <tr>
+            <th>Name</th>
+            <th>City</th>
+            <th>Order Total</th>
+            <th> Joined </th>
+        </tr>
+
+
+        <tr ng-repeat="cust in customers | filter:customerFilter | orderBy:sortBy:reverse">
+            <td>{{cust.name}}</td>
+            <td>{{cust.city}}</td>
+            <td>{{cust.orderTotal | currency}}</td>
+            <td>{{cust.joined | date}}</td>
+            <td><a href="#/orders/{{cust.id}}">View Orders</a></td>
+
+        </tr>
+    </table>
+</div>
+
+<span>Total Customers: {{customers.length}}</span>
+
+<footer>{{appSettings.version}}</footer>
