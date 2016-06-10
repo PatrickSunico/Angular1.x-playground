@@ -2,14 +2,21 @@
 (function() {
 
     angular.module('myApp')
-        .controller('mainController', ['$scope', 'customerFactory','appSettings', function($scope, customerFactory ,appSettings) {
+        .controller('mainController', ['$scope','$log', 'customerFactory','appSettings', function($scope, $log, customerFactory ,appSettings) {
 
             $scope.customers = [];
             $scope.appSettings = appSettings;
 
             //Serve data through our controller by passing values from service to our scope.customers array;
             (function init() {
-                $scope.customers = customerFactory.getCustomers();
+                  customerFactory.getCustomers()
+                                .success(function(customers){
+                                  $scope.customers = customers; // give value from the ajax call
+                                }).error(function(data,status,headers,config){
+                                    // console.log(data);
+                                    $log.log(data.error);
+
+                                });
             })();
 
 

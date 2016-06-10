@@ -4,12 +4,16 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "browser-sync": "^2.13.0",
     "gulp": "^3.9.1"
+  },
+  "dependencies": {
+    "express": "^4.13.4"
   }
 }
